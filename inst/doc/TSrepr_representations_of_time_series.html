@@ -12,7 +12,7 @@
 
 <meta name="author" content="Peter Laurinec" />
 
-<meta name="date" content="2018-01-26" />
+<meta name="date" content="2018-05-31" />
 
 <title>TSrepr: Time series representations in R</title>
 
@@ -70,13 +70,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">TSrepr: Time series representations in R</h1>
 <h4 class="author"><em>Peter Laurinec</em></h4>
-<h4 class="date"><em>2018-01-26</em></h4>
+<h4 class="date"><em>2018-05-31</em></h4>
 
 
 
 <p>The <strong>TSrepr</strong> package contains methods for time series representations and several other useful helper methods and functions.</p>
 <p>Time series representation can be defined as follows:</p>
-<p>Let \( x \) be a time series of length \( n \), then representation of \( x \) is a model <span class="math inline">\(\hat{x}\)</span> with reduced dimensionality \( p \) \( (p &lt; n) \) such that <span class="math inline">\(\hat{x}\)</span> approximates closely \( x \) (<span class="citation">Esling and Agon (2012)</span>).</p>
+<p>Let \( x \) be a time series of length \( n \), then representation of \( x \) is a model \(  \) with reduced dimensionality \( p \) \( (p &lt; n) \) such that \(  \) approximates closely \( x \) (<span class="citation">Esling and Agon (2012)</span>).</p>
 <p>Time series representations are used for:</p>
 <ul>
 <li>significant reduction of the time series dimensionality</li>
@@ -85,7 +85,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>reducing the dimension will reduce memory requirements and computational complexity of consequent machine learning methods.</li>
 </ul>
 <p>Therefore, they are awesome!</p>
-<p>Time series representation methods can be divided into four groups (types) (<span class="citation">Aghabozorgi, Seyed Shirkhorshidi, and Ying Wah (2015)</span>):</p>
+<p>Time series representation methods can be divided into four groups (types) (<span class="citation">Ratanamahatana et al. (2005)</span>):</p>
 <ul>
 <li>nondata adaptive</li>
 <li>data adaptive</li>
@@ -93,7 +93,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>data dictated (clipped data).</li>
 </ul>
 <p>In <strong>nondata adaptive</strong> representations, the parameters of transformation remain the same for all time series, irrespective of their nature. In <strong>data adaptive</strong> representations, the parameters of transformation vary depending on the available data. An approach to the <strong>model-based</strong> representation relies on the assumption that the observed time series was created based on basic model. The aim is to find the parameters of such a model as a representation. Two time series are then considered as similar if they were created by the same set of parameters of a basic model. In <strong>data dictated</strong> approaches, the compression ratio is defined automatically based on raw time series such as clipped (<span class="citation">Aghabozorgi, Seyed Shirkhorshidi, and Ying Wah (2015)</span>).</p>
-<p>Most famous (well known) methods for <strong>nondata adaptive</strong> type of representations are PAA (Piecewise Aggregate Approximation), DWT (Discrete Wavelet Transform), DFT (Discrete Fourier Transform), DCT (Discrete Cosine Transform) or PIP (Perceptually Important Points). For <strong>data adaptive</strong> type of representations, it is SAX (Symbolic Aggregate approXimation), PLA (Piecewise Linear Approximation) and SVD (Singular Value Decomposition). For <strong>model-based</strong> representations it is ARMA, mean profiles or estimated regression coefficients from a statistical model (e.g. linear model). The <strong>data dictated</strong> is the less known type of representation and the most famous method of this type is clipping (bit-level) representation (<span class="citation">Bagnall et al. (2006)</span>).</p>
+<p>Most famous (well known) methods for <strong>nondata adaptive</strong> type of representations are PAA (Piecewise Aggregate Approximation), DWT (Discrete Wavelet Transform), DFT (Discrete Fourier Transform), DCT (Discrete Cosine Transform) or PIP (Perceptually Important Points). For <strong>data adaptive</strong> type of representations, it is SAX (Symbolic Aggregate approXimation), PLA (Piecewise Linear Approximation) and SVD (Singular Value Decomposition). For <strong>model-based</strong> representations it is ARMA, mean profiles or estimated regression coefficients from a statistical model (e.g. linear model). The <strong>data dictated</strong> is the less known type of representation and the most famous method of this type is clipping (bit-level) representation (<span class="citation">A. Bagnall et al. (2006)</span>).</p>
 <div id="implemented-methods-and-functions" class="section level2">
 <h2>Implemented methods and functions</h2>
 <p>In the <strong>TSrepr</strong> package, these time series representation methods are implemented (the function names are in brackets):</p>
@@ -214,7 +214,7 @@ data_pla &lt;-<span class="st"> </span><span class="kw">repr_pla</span>(data_ts,
 ## [35] &quot;g&quot; &quot;h&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;i&quot; &quot;h&quot; &quot;h&quot; &quot;f&quot; &quot;i&quot; &quot;f&quot; &quot;g&quot; &quot;f&quot; &quot;i&quot; &quot;f&quot; &quot;h&quot; &quot;g&quot;
 ## [52] &quot;i&quot; &quot;f&quot; &quot;h&quot; &quot;g&quot; &quot;i&quot;</code></pre>
 <p>The last type of implemented representation methods is the <strong>data dictated</strong> - clipped. I developed two methods in this category - <strong>FeaClip</strong> and <strong>FeaTrend</strong>. Both creates bit-level (binary) representation from original time series and computes run lengths of values by RLE (Run Length Encoding). Then interpretable features are extracted from run lengths.</p>
-<p>I will now describe the first of the mentioned methods - <strong>FeaClip </strong>. Clipping representation is created very easily - if a value of a time series is greater then its average value, then the value is transformed to 1 and otherwise to 0. It can be defined formally as follows:</p>
+<p>I will now describe the first of the mentioned methods - <strong>FeaClip</strong>. Clipping representation is created very easily - if a value of a time series is greater then its average value, then the value is transformed to 1 and otherwise to 0. It can be defined formally as follows:</p>
 <p><span class="math display">\[ \hat{x}_t = \left\{
 \begin{array}{rl}
 1 &amp; \text{if } x_t &gt; \mu \\
@@ -311,6 +311,9 @@ data_sma &lt;-<span class="st"> </span><span class="kw">repr_sma</span>(data_ts,
 </div>
 <div id="ref-Lau1">
 <p>Laurinec, Peter, Marek Lóderer, Petra Vrablecová, Mária Lucká, Viera Rozinajová, and Anna Bou Ezzeddine. 2016. “Adaptive Time Series Forecasting of Energy Consumption Using Optimized Cluster Analysis.” In <em>Data Mining Workshops (Icdmw), 2016 Ieee 16th International Conference on</em>, 398–405. IEEE.</p>
+</div>
+<div id="ref-ratanamahatana">
+<p>Ratanamahatana, Chotirat, Eamonn Keogh, Anthony J Bagnall, and Stefano Lonardi. 2005. “A Novel Bit Level Time Series Representation with Implication of Similarity Search and Clustering.” In <em>Pacific-Asia Conference on Knowledge Discovery and Data Mining</em>, 771–77. Springer.</p>
 </div>
 </div>
 </div>
