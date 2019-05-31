@@ -1,8 +1,8 @@
 Package: TSrepr
 Type: Package
 Title: Time Series Representations
-Version: 1.0.2
-Date: 2018-11-21
+Version: 1.0.3
+Date: 2019-05-31
 Authors@R: person("Peter", "Laurinec", email = "tsreprpackage@gmail.com",
   role = c("aut", "cre"), 
   comment = c(ORCID = "0000-0002-3501-8783"))
@@ -21,8 +21,8 @@ BugReports: https://github.com/PetoLau/TSrepr/issues
 Suggests: knitr, rmarkdown, ggplot2, data.table, moments, testthat
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2018-11-22 10:49:49 UTC; PeterLaurinec
+Packaged: 2019-05-31 09:35:42 UTC; PeterLaurinec
 Author: Peter Laurinec [aut, cre] (<https://orcid.org/0000-0002-3501-8783>)
 Maintainer: Peter Laurinec <tsreprpackage@gmail.com>
 Repository: CRAN
-Date/Publication: 2018-11-22 11:10:06 UTC
+Date/Publication: 2019-05-31 10:00:07 UTC

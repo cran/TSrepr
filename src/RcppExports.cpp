@@ -121,6 +121,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// mse
+double mse(NumericVector x, NumericVector y);
+RcppExport SEXP _TSrepr_mse(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(mse(x, y));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rmse
 double rmse(NumericVector x, NumericVector y);
 RcppExport SEXP _TSrepr_rmse(SEXP xSEXP, SEXP ySEXP) {
@@ -142,6 +154,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
     rcpp_result_gen = Rcpp::wrap(mae(x, y));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mdae
+double mdae(NumericVector x, NumericVector y);
+RcppExport SEXP _TSrepr_mdae(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(mdae(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -169,15 +193,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// mdae
-double mdae(NumericVector x, NumericVector y);
-RcppExport SEXP _TSrepr_mdae(SEXP xSEXP, SEXP ySEXP) {
+// maape
+double maape(NumericVector x, NumericVector y);
+RcppExport SEXP _TSrepr_maape(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(mdae(x, y));
+    rcpp_result_gen = Rcpp::wrap(maape(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -191,18 +215,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type forecast(forecastSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type naive(naiveSEXP);
     rcpp_result_gen = Rcpp::wrap(mase(real, forecast, naive));
-    return rcpp_result_gen;
-END_RCPP
-}
-// maape
-double maape(NumericVector x, NumericVector y);
-RcppExport SEXP _TSrepr_maape(SEXP xSEXP, SEXP ySEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(maape(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -337,13 +349,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_TSrepr_meanC", (DL_FUNC) &_TSrepr_meanC, 1},
     {"_TSrepr_sumC", (DL_FUNC) &_TSrepr_sumC, 1},
     {"_TSrepr_medianC", (DL_FUNC) &_TSrepr_medianC, 1},
+    {"_TSrepr_mse", (DL_FUNC) &_TSrepr_mse, 2},
     {"_TSrepr_rmse", (DL_FUNC) &_TSrepr_rmse, 2},
     {"_TSrepr_mae", (DL_FUNC) &_TSrepr_mae, 2},
+    {"_TSrepr_mdae", (DL_FUNC) &_TSrepr_mdae, 2},
     {"_TSrepr_smape", (DL_FUNC) &_TSrepr_smape, 2},
     {"_TSrepr_mape", (DL_FUNC) &_TSrepr_mape, 2},
-    {"_TSrepr_mdae", (DL_FUNC) &_TSrepr_mdae, 2},
-    {"_TSrepr_mase", (DL_FUNC) &_TSrepr_mase, 3},
     {"_TSrepr_maape", (DL_FUNC) &_TSrepr_maape, 2},
+    {"_TSrepr_mase", (DL_FUNC) &_TSrepr_mase, 3},
     {"_TSrepr_norm_z", (DL_FUNC) &_TSrepr_norm_z, 1},
     {"_TSrepr_norm_z_list", (DL_FUNC) &_TSrepr_norm_z_list, 1},
     {"_TSrepr_denorm_z", (DL_FUNC) &_TSrepr_denorm_z, 3},

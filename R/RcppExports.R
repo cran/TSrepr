@@ -82,7 +82,8 @@ trending <- function(x) {
 #' @details FeaClip is method of time series representation based on feature extraction from run lengths (RLE) of bit-level (clipped) representation.
 #' It extracts 8 key features from clipped representation.
 #'
-#' There are as follows: \deqn{repr   =  \{  sum_1 -  sum  of  run  lengths  of  ones,}
+#' There are as follows: \deqn{repr   =  \{  max_1  -  max.  from  run  lengths  of  ones,}
+#' \deqn{sum_1 -  sum  of  run  lengths  of  ones,}
 #' \deqn{max_0  -  max.  from  run  lengths  of  zeros,}
 #' \deqn{crossings  -  length  of  RLE  encoding  -  1,}
 #' \deqn{f_0  -  number  of   first  zeros,}
@@ -248,6 +249,28 @@ medianC <- function(x) {
     .Call('_TSrepr_medianC', PACKAGE = 'TSrepr', x)
 }
 
+#' @rdname mse
+#' @name mse
+#' @title MSE
+#'
+#' @description The \code{mse} computes MSE (Mean Squared Error) of a forecast.
+#'
+#' @return the numeric value
+#'
+#' @param x the numeric vector of real values
+#' @param y the numeric vector of forecasted values
+#'
+#' @author Peter Laurinec, <tsreprpackage@gmail.com>
+#'
+#' @examples
+#' mse(runif(50), runif(50))
+#'
+#' @useDynLib TSrepr
+#' @export mse
+mse <- function(x, y) {
+    .Call('_TSrepr_mse', PACKAGE = 'TSrepr', x, y)
+}
+
 #' @rdname rmse
 #' @name rmse
 #' @title RMSE
@@ -290,6 +313,28 @@ rmse <- function(x, y) {
 #' @export mae
 mae <- function(x, y) {
     .Call('_TSrepr_mae', PACKAGE = 'TSrepr', x, y)
+}
+
+#' @rdname mdae
+#' @name mdae
+#' @title MdAE
+#'
+#' @description The \code{mdae} computes MdAE (Median Absolute Error) of a forecast.
+#'
+#' @return the numeric value
+#'
+#' @param x the numeric vector of real values
+#' @param y the numeric vector of forecasted values
+#'
+#' @author Peter Laurinec, <tsreprpackage@gmail.com>
+#'
+#' @examples
+#' mdae(runif(50), runif(50))
+#'
+#' @useDynLib TSrepr
+#' @export mdae
+mdae <- function(x, y) {
+    .Call('_TSrepr_mdae', PACKAGE = 'TSrepr', x, y)
 }
 
 #' @rdname smape
@@ -336,26 +381,30 @@ mape <- function(x, y) {
     .Call('_TSrepr_mape', PACKAGE = 'TSrepr', x, y)
 }
 
-#' @rdname mdae
-#' @name mdae
-#' @title MdAE
+#' @rdname maape
+#' @name maape
+#' @title MAAPE
 #'
-#' @description The \code{mdae} computes MdAE (Median Absolute Error) of a forecast.
+#' @description the \code{maape} computes MAAPE (Mean Arctangent Absolute Percentage Error) of a forecast.
 #'
-#' @return the numeric value
+#' @return the numeric value in %
 #'
 #' @param x the numeric vector of real values
 #' @param y the numeric vector of forecasted values
 #'
 #' @author Peter Laurinec, <tsreprpackage@gmail.com>
 #'
+#' @references Sungil Kim, Heeyoung Kim (2016)
+#' A new metric of absolute percentage error for intermittent demand forecasts,
+#'  International Journal of Forecasting 32(3):669-679
+#'
 #' @examples
-#' mdae(runif(50), runif(50))
+#' maape(runif(50), runif(50))
 #'
 #' @useDynLib TSrepr
-#' @export mdae
-mdae <- function(x, y) {
-    .Call('_TSrepr_mdae', PACKAGE = 'TSrepr', x, y)
+#' @export maape
+maape <- function(x, y) {
+    .Call('_TSrepr_maape', PACKAGE = 'TSrepr', x, y)
 }
 
 #' @rdname mase
@@ -379,32 +428,6 @@ mdae <- function(x, y) {
 #' @export mase
 mase <- function(real, forecast, naive) {
     .Call('_TSrepr_mase', PACKAGE = 'TSrepr', real, forecast, naive)
-}
-
-#' @rdname maape
-#' @name maape
-#' @title MAAPE
-#'
-#' @description the \code{maape} computes MAAPE (Mean Arctangent Absolute Percentage Error) of a forecast.
-#'
-#' @return the numeric value
-#'
-#' @param x the numeric vector of real values
-#' @param y the numeric vector of forecasted values
-#'
-#' @author Peter Laurinec, <tsreprpackage@gmail.com>
-#'
-#' @references Sungil Kim, Heeyoung Kim (2016)
-#' A new metric of absolute percentage error for intermittent demand forecasts,
-#'  International Journal of Forecasting 32(3):669-679
-#'
-#' @examples
-#' maape(runif(50), runif(50))
-#'
-#' @useDynLib TSrepr
-#' @export maape
-maape <- function(x, y) {
-    .Call('_TSrepr_maape', PACKAGE = 'TSrepr', x, y)
 }
 
 #' @rdname norm_z
