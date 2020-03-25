@@ -1,9 +1,16 @@
+# TSrepr 1.0.4 2020/03/25
+
+  * Fixed 0/0 case in forecasting accuracy measures
+  * Refactor of data.table::melt cases in vignettes, because of data.table package changes
+  * Added norm_*_params functions
+
 # TSrepr 1.0.3 2019/05/31
 
   * New accuracy measure MSE (mean squared error) was added
   * Fixed SAX breaks (bins) length
   * Fixed some bad alignments in documentation
   * Added stopping criteria for forecasting accuracy measures, when real values and forecasts have a different lengths + tests for that
+  * MAAPE is now consistent with MAPE and sMAPE, so it returns error in %
 
 # TSrepr 1.0.2 2018/11/21
 
