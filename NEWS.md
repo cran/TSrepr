@@ -1,3 +1,8 @@
+# TSrepr 1.1.0
+  * fixed repr_sma + added stopping rules with order parameter + unit tests on that
+  * added new normalisation functions: arctan + Box-Cox + Yeo-Johnson
+  * added repr_list function for handling multiple time series with different lengths
+  
 # TSrepr 1.0.4 2020/03/25
 
   * Fixed 0/0 case in forecasting accuracy measures
